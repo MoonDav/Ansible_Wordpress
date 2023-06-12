@@ -1,0 +1,7 @@
+---
+
+nginx_listen: "80"
+nginx_root: "/var/www/{{ server_name }}/wordpress"
+nginx_index: "index.php index.html index.htm"
+nginx_server_name: "{{ server_name }} www.{{ server_name }}"
+nginx_client_max_body_size: "32m"

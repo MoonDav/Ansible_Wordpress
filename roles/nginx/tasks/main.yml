@@ -1,0 +1,23 @@
+---
+
+  - name: install the nginx
+    apt:
+      name: nginx
+      update_cache: true
+      state: latest
+
+  - name: replace nginx.conf.j2
+    template:
+      src: nginx.conf.j2
+      dest: /etc/nginx/nginx.conf
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: replace default.j2
+    template:
+      src: default.j2
+      dest: /etc/nginx/sites-available/default
+      owner: root
+      group: root
+      mode: 0644

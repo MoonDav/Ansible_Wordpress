@@ -1,0 +1,60 @@
+---
+
+  - name: install the mysql-server
+    apt:
+      name: mysql-server
+      update_cache: true
+      state: latest
+
+  - name: install the mysql-client
+    apt:
+      name: mysql-client
+      update_cache: true
+      state: latest
+
+  - name: install the pymysql
+    apt:
+      name: python3-pymysql
+      update_cache: true
+      state: latest
+
+  - name: set password for root user
+    mysql_user:
+      name: root
+      password: "{{ mysql_root_password }}"
+      priv: '*.*:ALL,GRANT'
+      host: localhost
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      state: present
+
+  - name: save root password in .my.cnf
+    template:
+      src: root_cnf.j2
+      dest: /root/.my.cnf
+      owner: root
+      mode: 0600
+
+  - name: create a new database
+    mysql_db:
+      name: "{{ mysql_db }}"
+      collation: utf8_general_ci
+      encoding: utf8
+      state: present
+
+  - name: create database user
+    mysql_user:
+      name: "{{ mysql_user_name }}"
+      host: '%'
+      password: "{{ mysql_user_password }}"
+      priv: "{{ mysql_priv }}"
+      state: present
+
+  - name: remove test DB
+    mysql_db:
+      name: test
+      state: absent
+
+  - name: remove anonymous user
+    mysql_user:
+      name: ''
+      state: absent
