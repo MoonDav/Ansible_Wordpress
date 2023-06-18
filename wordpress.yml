@@ -4,13 +4,13 @@
   become: true
   vars_files:
     - vars/wordpress.yml
-#    - vars/wordpress_vault.yml
+    - vars/wordpress_vault.yml
 
   roles:
     - { role: nginx, tags: [nginx] }
     - { role: mysql, tags: [mysql] }
     - { role: php, tags: [php] }
-    - { role: wordpress, tags: [wordpress] }
+    - { role: wordpress, tags: [wordpress, app] }
 
   post_tasks:
   - name: restart php
