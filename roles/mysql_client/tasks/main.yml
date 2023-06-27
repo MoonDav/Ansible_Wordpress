@@ -1,0 +1,14 @@
+---
+
+  - name: install the mysql-client
+    apt:
+      name: mysql-client
+      update_cache: true
+      state: latest
+
+  - name: install the pymysql
+    apt:
+      name: python3-pymysql
+      update_cache: true
+      state: latest
+

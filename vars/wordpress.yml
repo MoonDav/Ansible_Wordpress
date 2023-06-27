@@ -1,5 +1,11 @@
 ---
 
-server_name: "psvpro.tk"
+server_name: "project.my"
 mysql_priv: "*.*:ALL,GRANT"
 
+mysql_db: "wordpress"
+mysql_user: "wordpress"
+mysql_password: "WordpreSS0!"
+mysql_root_password: "root_mysql"
+mysql_user_name: "wordpress"
+mysql_user_password: "WordpreSS0!"
