@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     haproxy.vm.box = "ubuntu/jammy64"
     haproxy.vm.box_check_update = false
     haproxy.vm.hostname = "haproxy"
-    haproxy.vm.network "public_network", ip: "192.168.0.30", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
+    haproxy.vm.network "public_network", ip: "192.168.0.40", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
     haproxy.vm.synced_folder ".", "/vagrant", disabled: true
     config.vm.provision "file", source: "/home/david/.ssh/ansible_key_rsa.pub", destination: "/home/vagrant/.ssh/"
     haproxy.vm.provision "shell", inline: <<-SHELL
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     wordpress1.vm.box_check_update = false
     wordpress1.vm.hostname = "wordpress1"
     wordpress1.vm.synced_folder ".", "/vagrant", disabled: true
-    wordpress1.vm.network "public_network", ip: "192.168.0.31", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
+    wordpress1.vm.network "public_network", ip: "192.168.0.41", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
     config.vm.provision "file", source: "/home/david/.ssh/ansible_key_rsa.pub", destination: "/home/vagrant/.ssh/"
     wordpress1.vm.provision "shell", inline: <<-SHELL
         chmod 600 /home/vagrant/.ssh/ansible_key_rsa.pub
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
     wordpress2.vm.box_check_update = false
     wordpress2.vm.hostname = "wordpress2"
     wordpress2.vm.synced_folder ".", "/vagrant", disabled: true
-    wordpress2.vm.network "public_network", ip: "192.168.0.32", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
+    wordpress2.vm.network "public_network", ip: "192.168.0.42", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
     config.vm.provision "file", source: "/home/david/.ssh/ansible_key_rsa.pub", destination: "/home/vagrant/.ssh/"
     wordpress2.vm.provision "shell", inline: <<-SHELL
         chmod 600 /home/vagrant/.ssh/ansible_key_rsa.pub
@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
     database.vm.box_check_update = false
     database.vm.hostname = "database"
     database.vm.synced_folder ".", "/vagrant", disabled: true
-    database.vm.network "public_network", ip: "192.168.0.33", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
+    database.vm.network "public_network", ip: "192.168.0.43", hostname: true, bridge: "en1: Realtek PCIe GbE Family Controller"
     config.vm.provision "file", source: "/home/david/.ssh/ansible_key_rsa.pub", destination: "/home/vagrant/.ssh/"
     database.vm.provision "shell", inline: <<-SHELL
         chmod 600 /home/vagrant/.ssh/ansible_key_rsa.pub

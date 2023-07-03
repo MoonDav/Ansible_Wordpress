@@ -10,3 +10,30 @@
     - { role: ping,         tags: [ping] }
     - { role: mysql_client, tags: [mysql_client, mysql] }
     - { role: mysql_server, tags: [mysql_server, mysql] }
+
+- hosts: wordpress
+  become: true
+  vars_files:
+    - vars/wordpress.yml
+#    - vars/wordpress_vault.yml
+  roles:
+    - { role: ping,         tags: [ping] }
+    - { role: mysql_client, tags: [mysql_client, mysql] }
+    - { role: nginx,        tags: [nginx] }
+    - { role: php,          tags: [php] }
+    - { role: wordpress,    tags: [wordpress] }
+
+  post_tasks:
+  - name: restart php
+    systemd:
+      name: php{{ php_version }}-fpm
+      state: restarted
+      enabled: true
+
+  - name: restart nginx
+    systemd:
+      name: nginx
+      state: restarted
+      enabled: true
+
+

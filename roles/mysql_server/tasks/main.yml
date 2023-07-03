@@ -22,6 +22,14 @@
       owner: root
       mode: 0600
 
+  - name: Copy file and set up the permission and owner of the file
+    copy:
+      src: mysqld.cnf
+      dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+      owner: root
+      group: root
+      mode: 0644
+
   - name: create a new database
     mysql_db:
       name: "{{ mysql_db }}"
