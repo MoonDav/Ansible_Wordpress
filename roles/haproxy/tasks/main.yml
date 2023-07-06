@@ -1,0 +1,23 @@
+---
+
+  - name: install haproxy
+    apt:
+      name: haproxy
+      update_cache: true
+      state: latest
+
+  - name: copy haproxy
+    copy:
+      src: haproxy
+      dest: /etc/default/haproxy
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: copy haproxy.cfg
+    copy:
+      src: haproxy.cfg
+      dest: /etc/haproxy/haproxy.cfg
+      owner: root
+      group: root
+      mode: 0644

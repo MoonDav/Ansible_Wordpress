@@ -36,4 +36,17 @@
       state: restarted
       enabled: true
 
+- hosts: haproxy
+  become: true
+  vars_files:
+    - vars/wordpress.yml
+  roles:
+    - { role: ping,    tags: [ping] }
+    - { role: haproxy, tags: [haproxy] }
 
+  post_tasks:
+  - name: restart haproxy
+    systemd:
+      name: haproxy
+      state: restarted
+      enabled: true
